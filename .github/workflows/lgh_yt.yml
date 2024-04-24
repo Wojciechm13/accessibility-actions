@@ -15,10 +15,7 @@ jobs:
         with:
           node-version: 18.x
       - name: Install Chrome
-        uses: browser-actions/setup-chrome@v1
-        with:
-          chrome-version: latest  # or specify a specific version if needed
-          install-dependencies: true  # optional, installs required dependencies
+        run: sudo apt-get update && sudo apt-get install -y google-chrome-stable
       - name: npm install, build
         run: |
           npm install
