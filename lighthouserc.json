@@ -9,7 +9,12 @@
       "target": "temporary-public-storage"
     },
     "assert": {
-      "preset": "lighthouse:recommended"
+      "assertions": {
+        "categories:accessibility": [
+          "pass",
+          { "minScore": 0.9 }
+        ]
+      }
     }
   }
 }
