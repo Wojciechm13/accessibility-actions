@@ -32,4 +32,4 @@ jobs:
         run: npm install pa11y-ci
 
       - name: Run Pa11y-ci
-        run: pa11y-ci http://localhost:5173/
+        run: pa11y http://localhost:5173/
