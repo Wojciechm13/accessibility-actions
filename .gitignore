@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+
+# Lighthouse results
+.lighthouseci
+
+# Do not include secrets
+.secrets
