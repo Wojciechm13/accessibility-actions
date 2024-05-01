@@ -27,3 +27,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
         run: lhci autorun
+
+      - name: Install Pa11y-ci
+        run: npm install pa11y-ci
+
+      - name: Run Pa11y-ci
+        run: pa11y-ci http://localhost:5173/
