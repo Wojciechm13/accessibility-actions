@@ -31,7 +31,7 @@ jobs:
           npm run build
 
       - name: Start application
-        run: npm start & wait-on http://localhost:5173
+        run: npm start & npx wait-on http://localhost:5173
 
       - name: Run pa11y
         run: |
