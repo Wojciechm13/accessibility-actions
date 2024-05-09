@@ -34,11 +34,16 @@ jobs:
       - name: Start application
         run: npm start & npx wait-on http://localhost:5173
 
-      - name: Run pa11y and Save Output
+      - name: Run pa11y-ci and Save Output
         run: |
-          npm install -g pa11y
-          pa11y_output=$(pa11y http://localhost:5173)
-          echo "$pa11y_output" > pa11y_results.txt
+          npm install -g pa11y-ci
+          pa11y-ci --json http://localhost:5173 > pa11y_results.json
 
-      - name: Display Pa11y Output
-        run: cat pa11y_results.txt
+      - name: Comment PR with Pa11y Results
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          filePath: pa11y_results.json
+          GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
+
+      - name: Exit
+        run: exit 0
