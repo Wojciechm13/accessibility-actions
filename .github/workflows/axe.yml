@@ -35,18 +35,12 @@ jobs:
         id: axe_results
         run: |
           axe_output=$(axe http://localhost:5173)
-          echo "::set-output name=axe_output::$axe_output"
+          echo "$axe_output" > axe_results.txt
 
       - name: Comment PR with Axe Accessibility Check Results
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: |
-            **Axe Accessibility Check Results:**
-
-            ```
-            ${{ steps.axe_results.outputs.axe_output }}
-            ```
-
+          filePath: axe_results.txt
           GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
 
       - name: Exit
