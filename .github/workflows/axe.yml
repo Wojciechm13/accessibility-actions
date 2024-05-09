@@ -44,7 +44,7 @@ jobs:
         with:
           message: |
             Test of Axe comments
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
 
       - name: Exit
         run: exit 0
