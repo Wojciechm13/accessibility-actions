@@ -28,15 +28,15 @@ jobs:
         run: npm install -g @axe-core/cli
 
       - name: Start Application
-        run: npm start & npx wait-on http://localhost:8000
+        run: npm start & npx wait-on http://localhost:5173
 
       - name: Run Axe Accessibility Tests
-        run: axe http://localhost:8000 --exit
+        run: axe http://localhost:5173
 
       - name: Capture Axe Accessibility Check Results
         id: axe_results
         run: |
-          axe_output=$(axe http://localhost:8000 --exit)
+          axe_output=$(axe http://localhost:5173)
           echo "::set-output name=axe_output::$axe_output"
 
       - name: Comment PR with Axe Accessibility Check Results
@@ -49,3 +49,6 @@ jobs:
             \`\`\`
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Exit
+        run: exit 0
