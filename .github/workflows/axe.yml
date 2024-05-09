@@ -43,5 +43,12 @@ jobs:
           filePath: axe_results.txt
           GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
 
+
+      - name: Upload Axe output artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: axe-results
+          path: axe_results.txt
+          
       - name: Exit
         run: exit 0
