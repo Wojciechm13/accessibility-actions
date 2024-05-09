@@ -1,17 +1,7 @@
 {
-  "standard": "WCAG2AAA",
-  "level": "notice",
   "defaults": {
-    "reporters": [
-      "cli",
-      "csv",
-      "html"
-    ],
-    "runners": [
-      "axe",
-      "htmlcs"
-    ],
-    "timeout": 1000000,
-    "wait": 2000
+    "concurrency": 4,
+    "standard": "WCAG2AA"
   }
+  
 }

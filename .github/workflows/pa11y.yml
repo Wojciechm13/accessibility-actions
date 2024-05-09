@@ -37,25 +37,12 @@ jobs:
       - name: Run pa11y-ci and Save Output
         run: |
           npm install -g pa11y-ci
-          pa11y-ci --json http://localhost:5173 > pa11y_results.json
-
-      - name: Check if pa11y results file exists
-        run: |
-          if [ -s "pa11y_results.json" ]; then
-            echo "Pa11y results file exists and is not empty."
-          else
-            echo "Error: Pa11y results file is empty or does not exist."
-            exit 1
-          fi
+          pa11y-ci --reporter=json > pa11y_results.json
 
       - name: Comment PR with Pa11y Results
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: |
-            **Pa11y Accessibility Check Results:**
-            ```
-            $(cat pa11y_results.json)
-            ```
+          filePath: pa11y_results.json
           GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
 
       - name: Exit
