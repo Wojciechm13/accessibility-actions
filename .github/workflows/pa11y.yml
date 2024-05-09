@@ -34,7 +34,11 @@ jobs:
       - name: Start application
         run: npm start & npx wait-on http://localhost:5173
 
-      - name: Run pa11y
+      - name: Run pa11y and Save Output
         run: |
           npm install -g pa11y
-          pa11y http://localhost:5173
+          pa11y_output=$(pa11y http://localhost:5173)
+          echo "$pa11y_output" > pa11y_results.txt
+
+      - name: Display Pa11y Output
+        run: cat pa11y_results.txt
