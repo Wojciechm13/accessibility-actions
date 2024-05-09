@@ -43,11 +43,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            **Axe Accessibility Check Results:**
-            \`\`\`
-            ${{ steps.axe_results.outputs.axe_output }}
-            \`\`\`
-        env:
+            Test of Axe comments
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Exit
