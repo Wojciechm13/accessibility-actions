@@ -8,6 +8,7 @@ on:
 jobs:
   axe:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout code
@@ -30,10 +31,7 @@ jobs:
       - name: Start Application
         run: npm start & npx wait-on http://localhost:5173
 
-      - name: Run Axe Accessibility Tests
-        run: axe http://localhost:5173
-
-      - name: Capture Axe Accessibility Check Results
+      - name: Run Axe Accessibility Tests and Capture Results
         id: axe_results
         run: |
           axe_output=$(axe http://localhost:5173)
@@ -43,7 +41,10 @@ jobs:
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
-            Test of Axe comments
+            **Axe Accessibility Check Results:**
+            \`\`\`
+            ${{ steps.axe_results.outputs.axe_output }}
+            \`\`\`
           GITHUB_TOKEN: ${{ secrets.MY_SECRET_TOKEN }}
 
       - name: Exit
