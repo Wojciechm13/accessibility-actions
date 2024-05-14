@@ -60,6 +60,12 @@ jobs:
 
             </details>
 
+      - name: Upload Pa11y output artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: pa11y_results
+          path: pa11y_output.txt
+
       - name: Check for Pa11y failures
         if: contains(steps.pa11y_output.outputs.content, 'errno 2')
         run: |
