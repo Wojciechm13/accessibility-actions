@@ -8,6 +8,6 @@
 
 <style scoped>
 .test-title {
-    color: red;
+    color: blue;
 }
 </style>
