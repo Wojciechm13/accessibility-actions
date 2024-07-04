@@ -11,12 +11,12 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Use Node.js 18.x
-        uses: actions/setup-node@v3
+      - name: Use Node.js 20.x
+        uses: actions/setup-node@v4
         with:
-          node-version: 18.x
+          node-version: 20.x
 
       - name: Install Chrome
         run: |
@@ -59,6 +59,12 @@ jobs:
               ```
 
             </details>
+
+      - name: Upload Pa11y output artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: pa11y_results
+          path: pa11y_output.txt
 
       - name: Check for Pa11y failures
         if: contains(steps.pa11y_output.outputs.content, 'errno 2')
